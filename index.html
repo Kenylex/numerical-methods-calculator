@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Métodos Numéricos</title>
+    <script src="bisection.js"></script>
+    <script src="newton.js"></script>
+</head>
+<body>
+    <h1>Método de la Bisección</h1>
+    <label for="intervalA">Valor de a:</label>
+    <input type="text" id="intervalA" placeholder="Ingrese el intervalo 1" />
+    <br />
+    <label for="intervalB">Valor de b:</label>
+    <input type="text" id="intervalB" placeholder="Ingrese el intervalo 2" />
+    <br />
+    <label for="bisectionIterations">Número de repeticiones (Bisección):</label>
+    <input type="text" id="bisectionIterations" placeholder="Ingrese el número de repeticiones" />
+    <br />
+
+    <h1>Método de Newton</h1>
+    <label for="initialApproximation">Aproximación inicial:</label>
+    <input type="text" id="initialApproximation" placeholder="Ingrese la aproximación inicial" />
+    <br />
+    <label for="newtonIterations">Número de repeticiones (Newton):</label>
+    <input type="text" id="newtonIterations" placeholder="Ingrese el número de repeticiones" />
+    <br />
+
+    <button onclick="solve()">Resolver</button>
+    <br />
+
+    <label for="bisectionResult">Resultado (Bisección):</label>
+    <input type="text" id="bisectionResult" readonly />
+    <br />
+    <label for="newtonResult">Resultado (Newton):</label>
+    <input type="text" id="newtonResult" readonly />
+
+    <script>
+        function solve() {
+            var intervalAInput = document.getElementById("intervalA").value;
+            var intervalBInput = document.getElementById("intervalB").value;
+            var bisectionIterationsInput = document.getElementById("bisectionIterations").value;
+
+            var initialApproximationInput = document.getElementById("initialApproximation").value;
+            var newtonIterationsInput = document.getElementById("newtonIterations").value;
+
+            var a = parseFloat(intervalAInput);
+            var b = parseFloat(intervalBInput);
+            var bisectionIterations = parseInt(bisectionIterationsInput);
+
+            var initialApproximation = parseFloat(initialApproximationInput);
+            var newtonIterations = parseInt(newtonIterationsInput);
+
+            if (isNaN(a) || isNaN(b) || isNaN(bisectionIterations) || isNaN(initialApproximation) || isNaN(newtonIterations)) {
+                alert("Por favor, ingrese valores válidos.");
+                return;
+            }
+
+            var bisectionResult = bisectionMethod(a, b, bisectionIterations);
+            var newtonResult = newtonMethod(initialApproximation, newtonIterations);
+
+            document.getElementById("bisectionResult").value = bisectionResult.toFixed(6);
+            document.getElementById("newtonResult").value = newtonResult.toFixed(6);
+        }
+    </script>
+</body>
+</html>
